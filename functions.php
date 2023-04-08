@@ -9,12 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-error_log( print_r(get_template_directory_uri(), true) );
-
-
 define( 'HELLO_ELEMENTOR_VERSION', '2.7.1' );
-define( 'ELEMAKER_FILE',  __FILE__ );
-define( 'ELEMAKER_ASSETS_PATH', ELEMAKER_FILE.'assets' );
+define( 'ELEMAKER_DIR',  __DIR__ );
+define( 'ELEMAKER_ASSETS_PATH', ELEMAKER_DIR.'assets' );
 define( 'ELEMAKER_URI', get_template_directory_uri() );
 
 if ( ! isset( $content_width ) ) {
@@ -217,63 +214,6 @@ if ( ! function_exists( 'hello_elementor_body_open' ) ) {
 	}
 }
 
-require_once dirname( __FILE__ ) . '/class-tgm-plugin-activation.php';
-add_action( 'tgmpa_register', 'mytheme_require_plugins' );
-function mytheme_require_plugins() {
-   
-	$plugins = array(
-		array(
-			'name'      => 'Elementor',
-			'slug'      => 'elementor',
-			'required'  => true, // this plugin is recommended 
-		),
-		array(
-			'name'      => 'ElementsKit',
-			'slug'      => 'elementskit-lite',
-			'required'  => true, // this plugin is recommended 
-		),
-		array(
-			'name'      => 'One click dmeo import',
-			'slug'      => 'one-click-demo-import',
-			'required'  => true, // this plugin is recommended 
-		)
-	);
-    $config = array( /* The array to configure TGM Plugin Activation */ );
-    tgmpa( $plugins, $config );
-}
 
-
-function ocdi_import_files() {
-	return [
-	  [
-		'import_file_name'             => 'Demo Import 1',
-		'categories'                   => [ 'Category 1', 'Category 2' ],
-		'local_import_file'            => trailingslashit( get_template_directory() ) . 'demo-data/main.xml',
-		'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'demo-data/main.json',
-		'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'demo-data/main.dat',
-		
-		'import_preview_image_url'     => ELEMAKER_URI.'/assets/images/demo1.png',
-		'preview_url'                  => 'http://thesharif.dev',
-	  ],
-	  [
-		'import_file_name'             => 'Demo Import 2',
-		'categories'                   => [ 'New category', 'Old category' ],
-		'local_import_file'            => trailingslashit( get_template_directory() ) . 'ocdi/demo-content2.xml',
-		'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'ocdi/widgets2.json',
-		'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'ocdi/customizer2.dat',
-		'local_import_redux'           => [
-		  [
-			'file_path'   => trailingslashit( get_template_directory() ) . 'ocdi/redux.json',
-			'option_name' => 'redux_option_name',
-		  ],
-		  [
-			'file_path'   => trailingslashit( get_template_directory() ) . 'ocdi/redux2.json',
-			'option_name' => 'redux_option_name_2',
-		  ],
-		],
-		'import_preview_image_url'     => 'http://www.your_domain.com/ocdi/preview_import_image2.jpg',
-		'preview_url'                  => 'http://www.your_domain.com/my-demo-2',
-	  ],
-	];
-  }
-  add_filter( 'ocdi/import_files', 'ocdi_import_files' );
+include_once  ELEMAKER_DIR  . '/includes/demo-installation-proccess/tgmpa-plugins.php';
+include_once  ELEMAKER_DIR  . '/includes/demo-installation-proccess/demo-import.php';
