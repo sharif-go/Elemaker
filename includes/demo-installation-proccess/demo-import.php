@@ -6,9 +6,9 @@ function ocdi_import_files() {
 	  [
 		'import_file_name'             => 'Demo Import 1',
 		'categories'                   => [ 'Category 1', 'Category 2' ],
-		'local_import_file'            => trailingslashit( get_template_directory() ) . 'demo-data/main.xml',
-		'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'demo-data/main.json',
-		'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'demo-data/main.dat',
+		'local_import_file'            => trailingslashit( get_template_directory() ) . 'assets/demo-data/main.xml',
+		'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'assets/demo-data/main.json',
+		'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'assets/demo-data/main.dat',
 		
 		'import_preview_image_url'     => ELEMAKER_URI.'/assets/images/demo1.png',
 		'preview_url'                  => 'http://thesharif.dev',
